@@ -23,7 +23,9 @@ def main():
     print("""
     Какой вариант шифрования выбрать!
     1 - Шифр Цезаря
-    2 - Шифр подстановки
+    2 - Афинный шифр
+    3 - Шифр подстановки
+    
     """)
 
     answer = int(input())
@@ -31,6 +33,9 @@ def main():
     if answer == 1: 
         key = int(input('Введите ключ - '))
         secret_text = use_case.encrypt_cezar(text.get_text(), key)
+    elif answer == 2:
+        key = int(input('Введите ключ - '))
+        secret_text = use_case.encrypt_athenian_cipher(text.get_text(), key)
     else: 
         secret_text = use_case.encrypt_simple_substitution(text.get_text())
     

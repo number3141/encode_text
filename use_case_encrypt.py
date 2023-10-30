@@ -1,4 +1,4 @@
-from cipher import CipherCaesar, CipherSimpleSubstitution
+from cipher import CipherCaesar, CipherSimpleSubstitution, AthenianCipher
 
 class UseCaseEncrypt():
     """
@@ -17,4 +17,9 @@ class UseCaseEncrypt():
         t = CipherSimpleSubstitution()
         return t.encrypt_text(text)
 
+
+    def encrypt_athenian_cipher(self, text, key): 
+        # Шифрование афинным шифром 
+        t = AthenianCipher()
+        return t.encrypt_text(text, key)
 
