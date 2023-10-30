@@ -10,21 +10,22 @@ class Cipher():
     1) encrypt_text(text) 
         Метод, шифрующий текст. Должен возвращать строку
     """
+    
+    ALL_SYMBOLS = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя !.?'
+    LEN_SYMBOLS = len(ALL_SYMBOLS)
+
     def encrypt_text(self, text) -> str: 
         raise NotImplementedError('Создайте encrypt_text')
 
 
 
-class CipherCaesar(Cipher):
-    def __init__(self) -> None:
-        self.ALL_SYMBOLS = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя !.?'
-    
+class CipherCaesar(Cipher):  
     def encrypt_text(self, text, key) -> str:
         secret_message = ''
 
         for letter in text: 
             if letter in self.ALL_SYMBOLS: 
-                new_index = (self.ALL_SYMBOLS.find(letter) + key) % len(self.ALL_SYMBOLS)
+                new_index = (self.ALL_SYMBOLS.find(letter) + key) % self.LEN_SYMBOLS
                 secret_message += self.ALL_SYMBOLS[new_index]
             else: 
                 secret_message += letter
@@ -55,10 +56,6 @@ class CipherSimpleSubstitution(Cipher):
 
 
 class AthenianCipher(Cipher):
-
-    def __init__(self) -> None:
-        self.ALL_SYMBOLS = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя !.?'
-    
     def encrypt_text(self, text, key) -> str:
         secret_message = ''
 
@@ -67,7 +64,7 @@ class AthenianCipher(Cipher):
 
         for letter in text: 
             if letter in self.ALL_SYMBOLS: 
-                new_index = ((self.ALL_SYMBOLS.find(letter) * keyA) + keyB) % len(self.ALL_SYMBOLS)
+                new_index = ((self.ALL_SYMBOLS.find(letter) * keyA) + keyB) % self.LEN_SYMBOLS
                 secret_message += self.ALL_SYMBOLS[new_index]
             else: 
                 secret_message += letter
